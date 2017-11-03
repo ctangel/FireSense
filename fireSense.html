@@ -3,20 +3,20 @@
   <head>
     <style>
 
-      #title {
+      #title{
         text-align: center;
         font-size: 300%;
         color: white;
       }
 
-      #title2 {
+      #title2{
         text-align: center;
         font-size: 200%;
       }
 
       #map {
         width: 95%;
-        height: 700px;
+        height: 780px;
         margin: 0 auto 0 auto;
       }
       body {
@@ -35,7 +35,7 @@
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
-        padding-bottom: 515px;
+        padding-bottom: 600px;
       }
       .button {
         background-color: white;
@@ -61,6 +61,19 @@
         margin: 4px 2px;
         cursor: pointer;
       }
+      .remove {
+    background-color: white;
+        border: none;
+        color: black;
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
     </style>
     <script src="jquery-3.2.0.min.js"></script>
   </head>
@@ -71,12 +84,15 @@
       <hr>
       <button class="add" onclick="addIncident()">Add Incident</button>
       <hr>
-      <a href="index.html" class="button">46 Spring Street, Princeton</a>
+      <a href="file:///Users/Brandon/Desktop/FireSense-master/index.html" class="button">46 Spring Street, Princeton</a>
+      <button class="remove" onclick="removeIncident()">X</button>
       <hr>
     </div>
     <div id="map"></div>
     <div id="distance"></div>
     <script>
+      var theMarker;
+
       function initMap() {
 
         geocoder = new google.maps.Geocoder();
@@ -108,7 +124,7 @@
 
         var infowindow = new google.maps.InfoWindow();
         var address = "46 spring street, Princeton";
-
+    
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == 'OK') {
             var marker = new google.maps.Marker({
@@ -134,33 +150,63 @@
         var btn = document.createElement("A");
         var t = document.createTextNode(address);
         btn.appendChild(t);
+        btn.id = "addbtn";
         btn.className = "button";
         btn.href = "file:///Users/Brandon/Desktop/FireSense-master/index.html";
         document.getElementById("floating-panel").appendChild(btn);
+        var cancel = document.createElement("BUTTON");
+        var text = document.createTextNode("X");
+        cancel.appendChild(text);
+        cancel.id = "addcancel"
+        cancel.className = "remove";
+        cancel.onclick = function() {
+          theMarker.setMap(null);
+          var parent = document.getElementById("floating-panel");
+      var child = document.getElementById("addbtn");
+      parent.removeChild(child);
+      child = document.getElementById("addcancel");
+      parent.removeChild(child);
+      child = document.getElementById("addhr");
+      parent.removeChild(child);
+        };
+    document.getElementById("floating-panel").appendChild(cancel);
         var line = document.createElement("hr");
+        line.id = "addhr";
         document.getElementById("floating-panel").appendChild(line);
 
         var infowindow = new google.maps.InfoWindow();
 
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == 'OK') {
-            var marker = new google.maps.Marker({
+            theMarker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
             });
 
-            google.maps.event.addListener(marker, 'click', (function(marker) {
+            google.maps.event.addListener(theMarker, 'click', (function(marker) {
             return function() {
                 infowindow.setContent(address);
-                infowindow.open(map, marker);
+                infowindow.open(map, theMarker);
               }
-            })(marker));
+            })(theMarker));
 
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
         });
       }
+
+      function removeIncident() {
+        theMarker.setMap(null);
+        var parent = document.getElementById("floating-panel");
+    var child = document.getElementById("addbtn");
+    parent.removeChild(child);
+    child = document.getElementById("addcancel");
+    parent.removeChild(child);
+    child = document.getElementById("addhr");
+    parent.removeChild(child);
+      }
+
     </script>
      <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5zi14vIhsTPj5VUm6c-yVqwUZ4Tb86B8&libraries=visualization&callback=initMap">
