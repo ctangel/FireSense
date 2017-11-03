@@ -9,7 +9,7 @@ body {
     "nav main ads"
     "nav footer ads";
   grid-template-rows: 80px 1fr 70px;
-  grid-template-columns: 20% 1fr 15%;
+  grid-template-columns: 15% 1fr 15%;
 /*  grid-row-gap: 10px;*/
   grid-column-gap: 10px;
   height: 100vh;
@@ -67,6 +67,10 @@ header, footer, nav, section {
   color: red;
 }
 
+#infoNav .publicrec a {
+  color: whitesmoke;
+}
+
 #main {
   grid-area: main;
   background: none;
@@ -91,10 +95,13 @@ header, footer, nav, section {
   grid-template-rows: auto;
   grid-template-columns: auto;
   padding: 1em;
+  color: #b9b9b9;
 }
 
 #infoNav p {
 /*  padding: 1em;*/
+  font-size: 1.5em;
+  color: whitesmoke;
 }
 
 #brInfo {
