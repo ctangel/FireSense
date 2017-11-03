@@ -5,7 +5,7 @@ html {
 body {
   display: grid;
   grid-template-areas:
-    "nav header ads"
+    "header main ads"
     "nav main ads"
     "nav footer ads";
   grid-template-rows: 80px 1fr 70px;
