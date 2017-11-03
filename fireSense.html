@@ -84,7 +84,7 @@
       <hr>
       <button class="add" onclick="addIncident()">Add Incident</button>
       <hr>
-      <a href="file:///Users/Brandon/Desktop/FireSense-master/index.html" class="button">46 Spring Street, Princeton</a>
+      <a href="index.html" class="button">46 Spring Street, Princeton</a>
       <button class="remove" onclick="removeIncident()">X</button>
       <hr>
     </div>
@@ -124,7 +124,7 @@
 
         var infowindow = new google.maps.InfoWindow();
         var address = "46 spring street, Princeton";
-    
+
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == 'OK') {
             var marker = new google.maps.Marker({
