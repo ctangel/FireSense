@@ -1,0 +1,189 @@
+html {
+  overflow-y: hidden;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "nav header ads"
+    "nav main ads"
+    "nav footer ads";
+  grid-template-rows: 80px 1fr 70px;
+  grid-template-columns: 20% 1fr 15%;
+/*  grid-row-gap: 10px;*/
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  color: #d8d8d8;
+}
+
+.active {
+  background: grey;
+}
+
+button {
+  color: black;
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+header, footer, article, nav, section {
+/*  padding: 1em;*/
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#topNav {
+  grid-area: header;
+  padding: 1em;
+}
+
+#topNav a {
+  color: white;
+  font-size: 2em;
+}
+
+#burnRate {
+  grid-area: footer;
+  width: 30%;
+  justify-self: center;
+  display: inline-block;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  text-align: center;
+}
+
+#burnRate h3 {
+  margin-bottom: 0;
+  padding:0;
+}
+
+#infoNav .publicrec a:hover {
+  color: red;
+}
+
+#main {
+  grid-area: main;
+  background: none;
+}
+
+#main img {
+  display: block;
+  margin: 0 auto;
+  max-width: 35em;
+}
+
+#main .d3 {
+  display: block;
+  margin: 0 auto;
+  max-width: 55em;
+}
+
+#infoNav {
+  grid-area: nav;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  padding: 1em;
+}
+
+#infoNav p {
+/*  padding: 1em;*/
+}
+
+#brInfo {
+  width: 100%;
+  height: 7em;
+  background: rgba(0, 0, 0, 0.7);
+  grid-column: span 3;
+  display: none;
+}
+
+#brInfo .materials ul li {
+  list-style-type: none;
+  display: inline-block;
+  font-size: 1.5em;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+#siteAds {
+  grid-area: ads;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  padding: 1em;
+}
+
+#siteAds .floor {
+  grid-row: span 6;
+  grid-column: span 2;
+}
+
+#siteAds .toggles {
+  grid-area: ads;
+  grid-row: span 1;
+  grid-column: span 2;
+}
+
+#siteAds .legend {
+  grid-row: span 1;
+  grid-column: span 2;
+}
+
+#siteAds .legend .low{
+  float: left;
+}
+
+#siteAds .legend .high{
+  float: right;
+}
+
+#siteAds .legend div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
+#siteAds .legend .fire {
+  background: red;
+}
+
+#siteAds .legend .br {
+  display: block;
+}
+
+#siteAds .legend .human {
+  background: green;
+}
+
+#siteAds .legend p {
+  display: inline-block;
+}
+
+#siteAds .legend .scale {
+  display: block;
+  height: 1em;
+  background: rgba(255,255,255,1);
+  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(250,21,0,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(1%, rgba(255,255,255,1)), color-stop(100%, rgba(250,21,0,1)));
+  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(250,21,0,1) 100%);
+  background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(250,21,0,1) 100%);
+  background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(250,21,0,1) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(250,21,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fa1500', GradientType=1 );
+}
+/* Stack the layout on small devices/viewports. */
+@media all and (max-width: 575px) {
+  body {
+    grid-template-areas:
+      "header"
+      "article"
+      "ads"
+      "nav"
+      "footer";
+    grid-template-rows: 80px 1fr 70px 1fr 70px;
+    grid-template-columns: 1fr;
+ }
+}
