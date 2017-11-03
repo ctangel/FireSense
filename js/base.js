@@ -19,7 +19,7 @@
 
   $("#siteAds .floor button").click(function() {
     $("#siteAds .floor button").removeClass("active");
-    $(this).addClass("active");
+    $(this).addClass("active").attr("disable");
   });
 
   $("#siteAds .toggles button").click(function() {
