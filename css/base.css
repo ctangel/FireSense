@@ -29,7 +29,7 @@ button {
   padding: 1em;
 }
 
-header, footer, article, nav, section {
+header, footer, nav, section {
 /*  padding: 1em;*/
   background: rgba(0, 0, 0, 0.7);
 }

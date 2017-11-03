@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+
+      #title{
+        text-align: center;
+        font-size: 300%;
+        color: white;
+      }
+
+      #title2{
+        text-align: center;
+        font-size: 200%;
+      }
+
+      #map {
+        width: 95%;
+        height: 700px;
+        margin: 0 auto 0 auto;
+      }
+      body {
+        background-color: #52565b;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 61px;
+        left: 20px;
+        right: 75%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 2px solid #52565b;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+        padding-bottom: 515px;
+      }
+      .button {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      .add {
+        background-color: #52565b;
+        border: none;
+        color: white;
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+    <script src="jquery-3.2.0.min.js"></script>
+  </head>
+  <body>
+    <header id="title">FireSense</header>
+    <div id="floating-panel">
+      <header id = "title2"> Fire Incidents </header>
+      <hr>
+      <button class="add" onclick="addIncident()">Add Incident</button>
+      <hr>
+      <a href="file:///Users/Brandon/Desktop/FireSense-master/index.html" class="button">46 Spring Street, Princeton</a>
+      <hr>
+    </div>
+    <div id="map"></div>
+    <div id="distance"></div>
+    <script>
+      function initMap() {
+
+        geocoder = new google.maps.Geocoder();
+        firstAdd = {lat: 40.346333, lng: -74.657510 };
+        secAdd = {lat: 40.349333, lng: -74.659510 };
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: firstAdd,
+          scrollwheel: false,
+          navigationControl: false,
+          mapTypeControl: false,
+          scaleControl: false,
+          clickableIcons: false,
+          disableDoubleClickZoom: true,
+          streetViewControl: false,
+          zoomControl: true,
+          maxZoom: 20,
+          minZoom: 13,
+          styles: [
+            {
+              featureType: "poi.business",
+              elementType: "labels",
+              stylers: [
+                { visibility: "off" }
+              ]
+            }
+          ]
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+        var address = "46 spring street, Princeton";
+    
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == 'OK') {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+                infowindow.setContent(address);
+                infowindow.open(map, marker);
+              }
+            })(marker));
+
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+      function addIncident() {
+        var address = window.prompt("Enter Address");
+        var btn = document.createElement("A");
+        var t = document.createTextNode(address);
+        btn.appendChild(t);
+        btn.className = "button";
+        btn.href = "file:///Users/Brandon/Desktop/FireSense-master/index.html";
+        document.getElementById("floating-panel").appendChild(btn);
+        var line = document.createElement("hr");
+        document.getElementById("floating-panel").appendChild(line);
+
+        var infowindow = new google.maps.InfoWindow();
+
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == 'OK') {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+                infowindow.setContent(address);
+                infowindow.open(map, marker);
+              }
+            })(marker));
+
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+    </script>
+     <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5zi14vIhsTPj5VUm6c-yVqwUZ4Tb86B8&libraries=visualization&callback=initMap">
+    </script>
+  </body>
+</html>
