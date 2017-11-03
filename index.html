@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
   <style>
     #map {
@@ -20,16 +21,16 @@
     <p> <a href="file:///Users/Brandon/Desktop/FireSense-master/fireSense.html"> Menu </a> </p>
   </header>
   <section id="main">
+     <div class="d3d">
+      <div id="map"></div>
+    </div>
+
+
     <div class="2d">
       <img class="f1" src="data/fp1.gif"/>
       <img class="f2" src="data/fp2.gif"/>
       <img class="f3" src="data/fp3.gif"/>
 <!--      <img class="f4" src="data/fp4.jpg"/>-->
-    </div>
-
-    <div class="3d">
-      <!-- <img class="d3" src="data/3d.png"/> -->
-      <div id="map"></div>
     </div>
 
     <div class="outside">
@@ -76,8 +77,8 @@
 <!--      <button class="f4"> 4 </button>-->
     </div>
     <div class="toggles">
-      <button class="2d active"> 2D </button>
-      <button class="3d"> 3D </button>
+    <button class="d3d active"> Satellite </button>
+      <button class="2d "> Floor Plans </button>
 <!--      <button class="outside"> Outside </button>-->
     </div>
     <div class="legend">
@@ -114,20 +115,27 @@
         console.log("hi");
 
         geocoder = new google.maps.Geocoder();
-        firstAdd = {lat: 40.346333, lng: -74.657510 };
+
+        var infowindow = new google.maps.InfoWindow();
+        var address = "46 spring street, Princeton";
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == 'OK') {
+
+                    firstAdd = {lat: 40.346333, lng: -74.657510 };
         secAdd = {lat: 40.349333, lng: -74.659510 };
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: firstAdd,
+          zoom: 20,
+          center: results[0].geometry.location,
           scrollwheel: false,
           navigationControl: false,
           mapTypeControl: false,
           scaleControl: false,
           clickableIcons: false,
           disableDoubleClickZoom: true,
+          mapTypeId: "satellite",
           streetViewControl: false,
           zoomControl: true,
-          maxZoom: 20,
+          maxZoom: 30,
           minZoom: 13,
           styles: [
             {
@@ -140,15 +148,13 @@
           ]
         });
 
-        var infowindow = new google.maps.InfoWindow();
-        var address = "46 spring street, Princeton";
-    
-        geocoder.geocode( { 'address': address}, function(results, status) {
-          if (status == 'OK') {
+
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
             });
+
+
 
             google.maps.event.addListener(marker, 'click', (function(marker) {
             return function() {
@@ -156,6 +162,47 @@
                 infowindow.open(map, marker);
               }
             })(marker));
+
+//        firstAdd = {lat: 40.346333, lng: -74.657510 };
+//        secAdd = {lat: 40.349333, lng: -74.659510 };
+//        map = new google.maps.Map(document.getElementById('map'), {
+//          zoom: 20,
+//          center: firstAdd,
+//          scrollwheel: false,
+//          navigationControl: false,
+//          mapTypeControl: false,
+//          scaleControl: false,
+//          clickableIcons: false,
+//          disableDoubleClickZoom: true,
+//          mapTypeId: "satellite",
+//          streetViewControl: false,
+//          zoomControl: true,
+//          maxZoom: 20,
+//          minZoom: 13,
+//          styles: [
+//            {
+//              featureType: "poi.business",
+//              elementType: "labels",
+//              stylers: [
+//                { visibility: "off" }
+//              ]
+//            }
+//          ]
+//        });
+
+//        geocoder.geocode( { 'address': address}, function(results, status) {
+//          if (status == 'OK') {
+//            var marker = new google.maps.Marker({
+//                map: map,
+//                position: results[0].geometry.location
+//            });
+//
+//            google.maps.event.addListener(marker, 'click', (function(marker) {
+//            return function() {
+//                infowindow.setContent(address);
+//                infowindow.open(map, marker);
+//              }
+//            })(marker));
 
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
@@ -172,3 +219,4 @@
 
 
 </body>
+</html>

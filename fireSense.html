@@ -3,13 +3,13 @@
   <head>
     <style>
 
-      #title{
+      #title {
         text-align: center;
         font-size: 300%;
         color: white;
       }
 
-      #title2{
+      #title2 {
         text-align: center;
         font-size: 200%;
       }
@@ -108,7 +108,7 @@
 
         var infowindow = new google.maps.InfoWindow();
         var address = "46 spring street, Princeton";
-    
+
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == 'OK') {
             var marker = new google.maps.Marker({

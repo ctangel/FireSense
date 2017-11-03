@@ -1,8 +1,13 @@
 
   $(function () {
+
+   $("body").append('<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5zi14vIhsTPj5VUm6c-yVqwUZ4Tb86B8&libraries=visualization&callback=initMap"> </script>');
+
+
+
   $("#main .2d img").hide();
   $("#main div").hide();
-  $("#main .2d").show();
+  $("#main .d3d").show();
   $("#main .f1").show();
 //  $("#brInfo").slideDown();
 
@@ -19,7 +24,9 @@
 
   $("#siteAds .toggles button").click(function() {
     $("#main").children().hide();
-    $("#main ." + this.className).show();
+    $("#main ." + this.className).show().hide().show();
+//    $("#map").hide();
+    $("#map").show(0);
   });
 
   $("#siteAds .toggles button").click(function() {
@@ -30,6 +37,5 @@
   $("#burnRate").click(function() {
     $("#brInfo").slideToggle();
   });
-
-  $.post("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5zi14vIhsTPj5VUm6c-yVqwUZ4Tb86B8&libraries=visualization&callback=initMap");
+    $("#map").show();
 });
