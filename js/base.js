@@ -18,8 +18,8 @@
   });
 
   $("#siteAds .floor button").click(function() {
-    $("#siteAds .floor button").removeClass("active");
-    $(this).addClass("active").attr("disable");
+    $("#siteAds .floor button").removeClass("active").prop("disabled", false);
+    $(this).addClass("active").prop("disabled", true);
   });
 
   $("#siteAds .toggles button").click(function() {
@@ -30,8 +30,14 @@
   });
 
   $("#siteAds .toggles button").click(function() {
-    $("#siteAds .toggles button").removeClass("active");
-    $(this).addClass("active");
+    $("#siteAds .toggles button").removeClass("active").prop("disabled", false);
+    $(this).addClass("active").prop("disabled", true);
+    console.log(this.className);
+    if (this.className.includes("d3d")) {
+      $(".floor").addClass("hid");
+    } else {
+      $(".floor").removeClass("hid");
+    }
   });
 
   $("#burnRate").click(function() {

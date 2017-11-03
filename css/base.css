@@ -16,6 +16,9 @@ body {
   margin: 0;
   color: #d8d8d8;
 }
+.hid {
+  visibility: hidden;
+}
 
 .active {
   background: grey;
@@ -151,7 +154,20 @@ header, footer, nav, section {
 #siteAds .legend .fire {
   background: red;
 }
+#siteAds .legend .firehuman {
+  background: rgba(255,0,0,1);
+background: -moz-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(34,255,0,1) 50%, rgba(255,21,0,1) 100%);
+background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255,0,0,1)), color-stop(50%, rgba(34,255,0,1)), color-stop(100%, rgba(255,21,0,1)));
+background: -webkit-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(34,255,0,1) 50%, rgba(255,21,0,1) 100%);
+background: -o-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(34,255,0,1) 50%, rgba(255,21,0,1) 100%);
+background: -ms-linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(34,255,0,1) 50%, rgba(255,21,0,1) 100%);
 
+  background: background: linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(34,255,0,1) 50%, rgba(255,21,0,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#ff1500', GradientType=1 );;
+}
+#siteAds .legend .humanLast {
+  background: lime;
+}
 #siteAds .legend .br {
   display: block;
 }
